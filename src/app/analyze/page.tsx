@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { UserButton } from "@clerk/nextjs";
 import PdfUploader from "@/components/PdfUploader";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -83,6 +84,7 @@ export default function AnalyzePage() {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
+            <UserButton afterSignOutUrl="/" />
             {file && (
               <button
                 onClick={handleReset}
