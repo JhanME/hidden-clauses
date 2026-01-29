@@ -4,9 +4,9 @@ import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
+import { Cloud, Laptop } from "lucide-react";
 import GitHubStars from "@/components/GitHubStars";
 import ThemeToggle from "@/components/ThemeToggle";
-
 const taglines = [
   "Lee lo que nadie lee. Protege lo que todos firman.",
   "Las letras pequeñas ya no serán invisibles.",
@@ -19,7 +19,6 @@ const taglines = [
   "Lee entre líneas. Evita sorpresas.",
   "Tu defensa contra las letras pequeñas.",
 ];
-
 export default function LandingPage() {
   const tagline = useMemo(
     () => taglines[Math.floor(Math.random() * taglines.length)],
@@ -30,17 +29,14 @@ export default function LandingPage() {
     <div className="relative flex min-h-screen flex-col bg-white text-zinc-900 dark:bg-[#0a0a0a] dark:text-white overflow-hidden">
       {/* Dot grid background */}
       <div className="dot-grid absolute inset-0 z-0" />
-
       {/* Radial gradient overlay for depth */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.06)_0%,_transparent_60%)] dark:bg-[radial-gradient(ellipse_at_center,_rgba(34,211,238,0.08)_0%,_transparent_60%)]" />
-
       {/* Navbar */}
       <nav className="sticky top-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-[#0a0a0a]/80 md:px-10">
         <div className="flex items-center gap-3">
           <Image src={logo} alt="Hidden Clauses" width={36} height={36} priority />
           <span className="text-lg font-bold tracking-tight">Hidden Clauses</span>
         </div>
-
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <a
@@ -61,7 +57,6 @@ export default function LandingPage() {
           </Link>
         </div>
       </nav>
-
       {/* Hero Section */}
       <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-24 pt-12">
         {/* Icon badge */}
@@ -70,17 +65,14 @@ export default function LandingPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
           </svg>
         </div>
-
         {/* Title */}
         <h1 className="mb-5 max-w-3xl text-center text-5xl font-extrabold leading-tight tracking-tight md:text-6xl">
           Analiza <span className="text-blue-600 dark:text-cyan-400">Contratos</span> Inteligentemente
         </h1>
-
         {/* Subtitle — random tagline */}
         <p className="mb-12 max-w-xl text-center text-lg leading-relaxed text-zinc-500 dark:text-zinc-400">
           {tagline}
         </p>
-
         {/* Simulated code editor */}
         <div className="w-full max-w-2xl">
           <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 shadow-2xl shadow-blue-500/10 dark:shadow-cyan-500/5 dark:border-zinc-800 dark:bg-[#111111]">
@@ -91,7 +83,6 @@ export default function LandingPage() {
               <span className="h-3 w-3 rounded-full bg-[#28c840]" />
               <span className="ml-3 text-xs text-zinc-500">contrato_analisis.ts</span>
             </div>
-
             {/* Code block */}
             <div className="p-5 font-mono text-sm leading-7">
               <div>
@@ -163,7 +154,6 @@ export default function LandingPage() {
                 <span className="text-zinc-800 dark:text-zinc-300">{"}"});</span>
               </div>
             </div>
-
             {/* Floating CTA inside editor */}
             <div className="flex justify-center border-t border-zinc-200 px-5 py-4 dark:border-zinc-800">
               <Link
@@ -176,10 +166,21 @@ export default function LandingPage() {
           </div>
         </div>
       </main>
-
       {/* Footer */}
-      <footer className="relative z-10 border-t border-zinc-200 px-6 py-6 text-center text-xs text-zinc-500 dark:border-zinc-800/50 dark:text-zinc-600">
-        Hidden Clauses &mdash; Analiza contratos con inteligencia artificial.
+      <footer className="relative z-10 flex flex-col items-center gap-4 border-t border-zinc-200 bg-white/80 px-6 py-10 text-center text-base text-zinc-500 backdrop-blur-sm dark:border-zinc-800/50 dark:bg-[#0a0a0a]/80 dark:text-zinc-600">
+        <div>Powered by</div>
+        <div className="flex items-center gap-6">
+          <a href="https://github.com/AndresRJ18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+            <Cloud size={20} /> Andres
+          </a>
+          <a href="https://github.com/sebastianherrera77" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+            <Laptop size={20} /> Wilmer
+          </a>
+          <a href="https://github.com/JhanME" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+            <Laptop size={20} /> Jhan
+          </a>
+        </div>
+        <div>© 2026 todos los derechos reservados</div>
       </footer>
     </div>
   );
