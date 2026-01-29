@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
       "Bash(git -C \"C:\\\\Users\\\\mocai\\\\Documents\\\\hidden-clauses\" status)",
-      "Bash(git -C \"C:\\\\Users\\\\mocai\\\\Documents\\\\hidden-clauses\" diff --staged)"
+      "Bash(git -C \"C:\\\\Users\\\\mocai\\\\Documents\\\\hidden-clauses\" diff --staged)",
+      "Bash(git push:*)"
     ]
   }
 }
