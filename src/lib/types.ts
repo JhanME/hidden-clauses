@@ -4,6 +4,7 @@ export interface Clause {
   summary: string;
   severity: "safe" | "warning" | "harmful";
   explanation: string;
+  textSnippets: string[];
 }
 
 export interface AnalysisResult {

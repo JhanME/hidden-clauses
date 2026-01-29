@@ -36,7 +36,13 @@ export async function POST(request: NextRequest) {
     const base64 = Buffer.from(arrayBuffer).toString("base64");
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash",
+      generationConfig: {
+        temperature: 0.2,
+        responseMimeType: "application/json",
+      },
+    });
 
     const result = await model.generateContent([
       {
@@ -50,7 +56,7 @@ export async function POST(request: NextRequest) {
 
     const responseText = result.response.text();
 
-    // Strip markdown code fences if present
+    // Strip markdown code fences if present (fallback)
     const cleaned = responseText
       .replace(/^```(?:json)?\s*\n?/i, "")
       .replace(/\n?```\s*$/i, "")

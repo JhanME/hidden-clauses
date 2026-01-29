@@ -2,8 +2,10 @@
 
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import LandingPage from "@/components/LandingPage";
 import PdfUploader from "@/components/PdfUploader";
 import AnalysisPanel from "@/components/AnalysisPanel";
+import type { AnalysisResult } from "@/lib/types";
 
 const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
@@ -13,9 +15,9 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
     </div>
   ),
 });
-import type { AnalysisResult } from "@/lib/types";
 
 export default function Home() {
+  const [started, setStarted] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -61,6 +63,10 @@ export default function Home() {
     setIsAnalyzing(false);
   }, [fileUrl]);
 
+  if (!started) {
+    return <LandingPage onStart={() => setStarted(true)} />;
+  }
+
   const glowClass = result
     ? result.verdict === "harmful"
       ? "glow-harmful"
@@ -94,7 +100,7 @@ export default function Home() {
         {/* Left panel — PDF */}
         <div className="flex w-1/2 flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900">
           {fileUrl ? (
-            <PdfViewer fileUrl={fileUrl} />
+            <PdfViewer fileUrl={fileUrl} clauses={result?.clauses} />
           ) : (
             <PdfUploader onFileSelected={handleFileSelected} />
           )}
