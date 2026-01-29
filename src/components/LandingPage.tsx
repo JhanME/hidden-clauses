@@ -31,7 +31,7 @@ export default function LandingPage() {
       {/* Radial gradient overlay for depth */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.06)_0%,_transparent_60%)] dark:bg-[radial-gradient(ellipse_at_center,_rgba(34,211,238,0.08)_0%,_transparent_60%)]" />
       {/* Navbar */}
-      <nav className="sticky top-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-[#0a0a0a]/80 md:px-10">
+      <nav className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-[#0a0a0a]/80 md:px-10">
         <div className="flex items-center">
           <span className="text-lg font-bold tracking-tight">Hidden Clauses</span>
         </div>
@@ -55,7 +55,7 @@ export default function LandingPage() {
         </div>
       </nav>
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-24 pt-12">
+      <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-16 pb-24">
         {/* Icon badge */}
         <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-100 shadow-lg shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900/80 dark:shadow-cyan-500/5">
           <svg className="h-8 w-8 text-blue-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
