@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 import { Cloud, Laptop } from "lucide-react";
@@ -33,11 +32,10 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.06)_0%,_transparent_60%)] dark:bg-[radial-gradient(ellipse_at_center,_rgba(34,211,238,0.08)_0%,_transparent_60%)]" />
       {/* Navbar */}
       <nav className="sticky top-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-[#0a0a0a]/80 md:px-10">
-        <div className="flex items-center gap-3">
-          <Image src={logo} alt="Hidden Clauses" width={36} height={36} priority />
+        <div className="flex items-center">
           <span className="text-lg font-bold tracking-tight">Hidden Clauses</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap md:overflow-x-visible md:whitespace-normal">
           <ThemeToggle />
           <a
             href="https://github.com/JhanME/hidden-clauses"

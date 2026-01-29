@@ -96,9 +96,9 @@ export default function AnalyzePage() {
       </header>
 
       {/* Two-panel layout */}
-      <div className="relative z-10 flex flex-1 gap-4 overflow-hidden p-4">
+      <div className="relative z-10 flex flex-1 flex-col md:flex-row gap-4 overflow-hidden p-4">
         {/* Left panel — PDF */}
-        <div className="flex w-1/2 flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900">
+        <div className="flex w-full md:w-1/2 h-1/2 md:h-full flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900">
           {fileUrl ? (
             <PdfViewer fileUrl={fileUrl} clauses={result?.clauses} />
           ) : (
@@ -108,7 +108,7 @@ export default function AnalyzePage() {
 
         {/* Right panel — Analysis */}
         <div
-          className={`flex w-1/2 flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 ${glowClass}`}
+          className={`flex w-full md:w-1/2 h-1/2 md:h-full flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 ${glowClass}`}
         >
           <AnalysisPanel
             isAnalyzing={isAnalyzing}
