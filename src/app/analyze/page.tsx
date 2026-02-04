@@ -6,7 +6,11 @@ import { UserButton } from "@clerk/nextjs";
 import PdfUploader from "@/components/PdfUploader";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import ThemeToggle from "@/components/ThemeToggle";
-import type { AnalysisResult } from "@/lib/types";
+import SensitiveDataWarning from "@/components/SensitiveDataWarning";
+import ChatPanel from "@/components/ChatPanel";
+import type { AnalysisResult, ValidationResult, SensitiveDataScanResult } from "@/lib/types";
+import { extractTextFromPdf } from "@/lib/pdfTextExtractor";
+import { scanSensitiveData } from "@/lib/sensitiveData";
 
 const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
@@ -17,19 +21,28 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ),
 });
 
+type AnalysisStep = "idle" | "validating" | "scanning" | "analyzing";
+type ActiveTab = "analysis" | "chat";
+
 export default function AnalyzePage() {
   const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisStep, setAnalysisStep] = useState<AnalysisStep>("idle");
   const [error, setError] = useState<string | null>(null);
 
-  const handleFileSelected = useCallback(async (selectedFile: File) => {
-    setFile(selectedFile);
-    setFileUrl(URL.createObjectURL(selectedFile));
-    setResult(null);
-    setError(null);
-    setIsAnalyzing(true);
+  // Sensitive data state
+  const [sensitiveDataResult, setSensitiveDataResult] = useState<SensitiveDataScanResult | null>(null);
+  const [showSensitiveWarning, setShowSensitiveWarning] = useState(false);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+
+  // Chat state
+  const [extractedText, setExtractedText] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<ActiveTab>("analysis");
+
+  const runAnalysis = useCallback(async (selectedFile: File) => {
+    setAnalysisStep("analyzing");
 
     try {
       const formData = new FormData();
@@ -51,8 +64,90 @@ export default function AnalyzePage() {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
       setIsAnalyzing(false);
+      setAnalysisStep("idle");
     }
   }, []);
+
+  const handleFileSelected = useCallback(async (selectedFile: File) => {
+    setFile(selectedFile);
+    setFileUrl(URL.createObjectURL(selectedFile));
+    setResult(null);
+    setError(null);
+    setIsAnalyzing(true);
+    setActiveTab("analysis");
+
+    try {
+      // Step 1: Validate if document is a contract
+      setAnalysisStep("validating");
+
+      const validateFormData = new FormData();
+      validateFormData.append("pdf", selectedFile);
+
+      const validateResponse = await fetch("/api/validate", {
+        method: "POST",
+        body: validateFormData,
+      });
+
+      if (!validateResponse.ok) {
+        throw new Error("Error al verificar el documento");
+      }
+
+      const validation: ValidationResult = await validateResponse.json();
+
+      if (!validation.isContract) {
+        setError(`Este documento no es un contrato. Tipo detectado: ${validation.documentType}. ${validation.reason}`);
+        setIsAnalyzing(false);
+        setAnalysisStep("idle");
+        return;
+      }
+
+      // Step 2: Extract text and scan for sensitive data
+      setAnalysisStep("scanning");
+
+      const text = await extractTextFromPdf(selectedFile);
+      setExtractedText(text);
+
+      const scanResult = scanSensitiveData(text);
+      setSensitiveDataResult(scanResult);
+
+      if (scanResult.hasSensitiveData) {
+        // Show warning modal and wait for user decision
+        setPendingFile(selectedFile);
+        setShowSensitiveWarning(true);
+        setIsAnalyzing(false);
+        setAnalysisStep("idle");
+        return;
+      }
+
+      // Step 3: Run full analysis
+      await runAnalysis(selectedFile);
+
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      setIsAnalyzing(false);
+      setAnalysisStep("idle");
+    }
+  }, [runAnalysis]);
+
+  const handleSensitiveDataCancel = useCallback(() => {
+    setShowSensitiveWarning(false);
+    setPendingFile(null);
+    setSensitiveDataResult(null);
+    // Reset to initial state
+    if (fileUrl) URL.revokeObjectURL(fileUrl);
+    setFile(null);
+    setFileUrl(null);
+    setExtractedText("");
+  }, [fileUrl]);
+
+  const handleSensitiveDataContinue = useCallback(async () => {
+    setShowSensitiveWarning(false);
+    if (pendingFile) {
+      setIsAnalyzing(true);
+      await runAnalysis(pendingFile);
+      setPendingFile(null);
+    }
+  }, [pendingFile, runAnalysis]);
 
   const handleReset = useCallback(() => {
     if (fileUrl) URL.revokeObjectURL(fileUrl);
@@ -61,6 +156,12 @@ export default function AnalyzePage() {
     setResult(null);
     setError(null);
     setIsAnalyzing(false);
+    setAnalysisStep("idle");
+    setSensitiveDataResult(null);
+    setShowSensitiveWarning(false);
+    setPendingFile(null);
+    setExtractedText("");
+    setActiveTab("analysis");
   }, [fileUrl]);
 
   const glowClass = result
@@ -72,6 +173,15 @@ export default function AnalyzePage() {
   return (
     <div className="relative flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className="dot-grid pointer-events-none absolute inset-0 z-0" />
+
+      {/* Sensitive Data Warning Modal */}
+      {showSensitiveWarning && sensitiveDataResult && (
+        <SensitiveDataWarning
+          scanResult={sensitiveDataResult}
+          onCancel={handleSensitiveDataCancel}
+          onContinue={handleSensitiveDataContinue}
+        />
+      )}
 
       {/* Header */}
       <header className="relative z-10 shrink-0 border-b border-zinc-200 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
@@ -108,15 +218,56 @@ export default function AnalyzePage() {
           )}
         </div>
 
-        {/* Right panel — Analysis */}
+        {/* Right panel — Analysis/Chat */}
         <div
-          className={`flex w-full md:w-1/2 h-1/2 md:h-full flex-col rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 ${glowClass}`}
+          className={`flex w-full md:w-1/2 h-1/2 md:h-full flex-col rounded-2xl bg-white shadow-sm dark:bg-zinc-900 ${glowClass}`}
         >
-          <AnalysisPanel
-            isAnalyzing={isAnalyzing}
-            result={result}
-            error={error}
-          />
+          {/* Tabs - only show when we have results */}
+          {result && (
+            <div className="shrink-0 flex border-b border-zinc-200 dark:border-zinc-700">
+              <button
+                onClick={() => setActiveTab("analysis")}
+                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                  activeTab === "analysis"
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                }`}
+              >
+                Análisis
+              </button>
+              <button
+                onClick={() => setActiveTab("chat")}
+                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                  activeTab === "chat"
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                }`}
+              >
+                Preguntas
+              </button>
+            </div>
+          )}
+
+          {/* Tab content */}
+          <div className="flex-1 overflow-hidden">
+            {activeTab === "analysis" ? (
+              <div className="h-full p-4">
+                <AnalysisPanel
+                  isAnalyzing={isAnalyzing}
+                  result={result}
+                  error={error}
+                  analysisStep={analysisStep}
+                />
+              </div>
+            ) : (
+              result && extractedText && (
+                <ChatPanel
+                  contractText={extractedText}
+                  analysisResult={result}
+                />
+              )
+            )}
+          </div>
         </div>
       </div>
     </div>

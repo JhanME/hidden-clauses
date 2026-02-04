@@ -2,10 +2,13 @@
 
 import type { AnalysisResult, Clause } from "@/lib/types";
 
+type AnalysisStep = "idle" | "validating" | "scanning" | "analyzing";
+
 interface AnalysisPanelProps {
   isAnalyzing: boolean;
   result: AnalysisResult | null;
   error: string | null;
+  analysisStep?: AnalysisStep;
 }
 
 const severityConfig = {
@@ -48,12 +51,28 @@ function ClauseCard({ clause }: { clause: Clause }) {
   );
 }
 
-export default function AnalysisPanel({ isAnalyzing, result, error }: AnalysisPanelProps) {
+const stepMessages: Record<AnalysisStep, { title: string; subtitle: string }> = {
+  idle: { title: "", subtitle: "" },
+  validating: {
+    title: "Verificando tipo de documento...",
+    subtitle: "Comprobando si es un contrato válido",
+  },
+  scanning: {
+    title: "Escaneando datos sensibles...",
+    subtitle: "Buscando información personal",
+  },
+  analyzing: {
+    title: "Analizando contrato...",
+    subtitle: "Identificando cláusulas y riesgos",
+  },
+};
+
+export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep = "analyzing" }: AnalysisPanelProps) {
   if (error) {
     return (
       <div className="flex h-full items-center justify-center p-8">
         <div className="rounded-xl bg-red-50 p-6 text-center dark:bg-red-950/20">
-          <p className="text-lg font-medium text-red-700 dark:text-red-400">Analysis Failed</p>
+          <p className="text-lg font-medium text-red-700 dark:text-red-400">Error en el análisis</p>
           <p className="mt-2 text-sm text-red-600 dark:text-red-300">{error}</p>
         </div>
       </div>
@@ -61,13 +80,14 @@ export default function AnalysisPanel({ isAnalyzing, result, error }: AnalysisPa
   }
 
   if (isAnalyzing) {
+    const { title, subtitle } = stepMessages[analysisStep];
     return (
       <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-800 dark:border-zinc-600 dark:border-t-zinc-200" />
         <p className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
-          Analyzing contract...
+          {title}
         </p>
-        <p className="text-sm text-zinc-500">This may take a moment</p>
+        <p className="text-sm text-zinc-500">{subtitle}</p>
       </div>
     );
   }
