@@ -38,3 +38,19 @@ export interface SensitiveDataScanResult {
   matches: SensitiveDataMatch[];
   summary: string;
 }
+
+export interface ComparisonDifference {
+  aspect: string;
+  contract1: string;
+  contract2: string;
+  favoredContract: "contract1" | "contract2" | "equal";
+}
+
+export interface ComparisonResult {
+  contract1Analysis: AnalysisResult;
+  contract2Analysis: AnalysisResult;
+  recommendation: "contract1" | "contract2" | "similar";
+  recommendationReason: string;
+  keyDifferences: ComparisonDifference[];
+  overallSummary: string;
+}

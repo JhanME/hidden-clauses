@@ -227,21 +227,19 @@ export default function AnalyzePage() {
             <div className="shrink-0 flex border-b border-zinc-200 dark:border-zinc-700">
               <button
                 onClick={() => setActiveTab("analysis")}
-                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-                  activeTab === "analysis"
+                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "analysis"
                     ? "border-b-2 border-blue-600 text-blue-600"
                     : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-                }`}
+                  }`}
               >
                 Análisis
               </button>
               <button
                 onClick={() => setActiveTab("chat")}
-                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-                  activeTab === "chat"
+                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "chat"
                     ? "border-b-2 border-blue-600 text-blue-600"
                     : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-                }`}
+                  }`}
               >
                 Preguntas
               </button>
@@ -249,23 +247,23 @@ export default function AnalyzePage() {
           )}
 
           {/* Tab content */}
-          <div className="flex-1 overflow-hidden">
-            {activeTab === "analysis" ? (
-              <div className="h-full p-4">
-                <AnalysisPanel
-                  isAnalyzing={isAnalyzing}
-                  result={result}
-                  error={error}
-                  analysisStep={analysisStep}
-                />
-              </div>
-            ) : (
-              result && extractedText && (
+          <div className="flex-1 overflow-hidden relative">
+            <div className={`h-full p-4 ${activeTab === "analysis" ? "block" : "hidden"}`}>
+              <AnalysisPanel
+                isAnalyzing={isAnalyzing}
+                result={result}
+                error={error}
+                analysisStep={analysisStep}
+              />
+            </div>
+            {result && extractedText && (
+              <div className={`h-full ${activeTab === "chat" ? "block" : "hidden"}`}>
                 <ChatPanel
+                  key={fileUrl}
                   contractText={extractedText}
                   analysisResult={result}
                 />
-              )
+              </div>
             )}
           </div>
         </div>
