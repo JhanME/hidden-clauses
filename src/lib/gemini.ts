@@ -3,6 +3,11 @@ export function buildPrompt(): string {
 
 ANALIZA el PDF adjunto e identifica TODAS las cláusulas del contrato.
 
+## IMPORTANTE: PROTECCIÓN DE DATOS PERSONALES
+- NO incluyas datos personales en tus respuestas (nombres reales, DNI, teléfonos, direcciones, cuentas bancarias)
+- Usa términos genéricos como "la parte A", "el arrendador", "el empleador", "el cliente", etc.
+- Si necesitas mencionar una persona, usa "[Parte 1]", "[Parte 2]", etc.
+
 ## CRITERIOS DE SEVERIDAD (sé estricto, ante la duda marca "warning" o "harmful"):
 
 ### "harmful" — Marca como HARMFUL si la cláusula:
@@ -63,4 +68,82 @@ RESPONDE ÚNICAMENTE con JSON válido, sin markdown ni texto adicional:
   "verdict": "safe" | "harmful",
   "verdictSummary": "string"
 }`;
+}
+
+export function buildValidationPrompt(): string {
+  return `Analiza el documento PDF adjunto y determina si es un CONTRATO LEGAL o no.
+
+Un documento ES un contrato si contiene:
+- Identificación de partes (quién firma con quién)
+- Obligaciones mutuas o unilaterales
+- Términos y condiciones
+- Indicios de acuerdo legal (firmas, fechas, cláusulas)
+
+Un documento NO es un contrato si es:
+- Una receta de cocina
+- Un manual de instrucciones
+- Un libro o artículo
+- Una factura o recibo simple
+- Un formulario en blanco
+- Un documento informativo sin obligaciones
+
+Responde ÚNICAMENTE con JSON válido:
+{
+  "isContract": true | false,
+  "confidence": 0.0-1.0,
+  "documentType": "tipo detectado (ej: contrato de alquiler, receta, manual, etc.)",
+  "reason": "explicación breve de por qué es o no un contrato"
+}`;
+}
+
+import type { ChatMessage, AnalysisResult } from "./types";
+
+export function buildChatPrompt(
+  userMessage: string,
+  contractText: string,
+  analysisResult: AnalysisResult,
+  conversationHistory: ChatMessage[]
+): string {
+  // Truncate contract text to ~8000 chars to save tokens
+  const truncatedContract = contractText.length > 8000
+    ? contractText.slice(0, 8000) + "\n[...texto truncado...]"
+    : contractText;
+
+  // Build conversation history (last 6 messages)
+  const recentHistory = conversationHistory.slice(-6);
+  const historyText = recentHistory.length > 0
+    ? recentHistory.map((m) => `${m.role === "user" ? "Usuario" : "Asistente"}: ${m.content}`).join("\n")
+    : "";
+
+  // Build analysis summary
+  const analysisSummary = `
+Veredicto: ${analysisResult.verdict === "harmful" ? "Contrato con cláusulas perjudiciales" : "Contrato seguro"}
+Resumen: ${analysisResult.verdictSummary}
+Cláusulas identificadas: ${analysisResult.clauses.length}
+- Harmful: ${analysisResult.clauses.filter((c) => c.severity === "harmful").length}
+- Warning: ${analysisResult.clauses.filter((c) => c.severity === "warning").length}
+- Safe: ${analysisResult.clauses.filter((c) => c.severity === "safe").length}
+`;
+
+  return `Eres un asistente legal especializado en contratos. El usuario ya ha analizado un contrato y ahora quiere hacer preguntas sobre él.
+
+## CONTEXTO DEL CONTRATO
+${truncatedContract}
+
+## ANÁLISIS PREVIO
+${analysisSummary}
+
+## INSTRUCCIONES
+- Responde SOLO basándote en la información del contrato proporcionado
+- Si la pregunta no puede responderse con el contrato, indica que "esa información no está en el documento"
+- NO inventes información que no esté en el contrato
+- Sé conciso y directo en tus respuestas
+- NO incluyas datos personales en tus respuestas (usa términos genéricos)
+- Puedes hacer referencia a las cláusulas identificadas en el análisis
+
+${historyText ? `## CONVERSACIÓN PREVIA\n${historyText}\n` : ""}
+## PREGUNTA DEL USUARIO
+${userMessage}
+
+Responde de forma clara y útil:`;
 }
