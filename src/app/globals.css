@@ -3,13 +3,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0f1e;
+  --foreground: #f0f0f5;
+  --accent-primary: #00d9ff;
+  --accent-secondary: #1e6d9e;
+  --surface: #1a1a2e;
+  --surface-hover: #242438;
+  --border: #2d2d4a;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #0f0f1e;
+  --foreground: #f0f0f5;
+  --accent-primary: #00d9ff;
+  --accent-secondary: #1e6d9e;
+  --surface: #1a1a2e;
+  --surface-hover: #242438;
+  --border: #2d2d4a;
 }
 
 @theme inline {
@@ -24,21 +34,65 @@ body {
   font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
 }
 
-/* Dot grid pattern */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Interactive gradient background */
+.interactive-bg {
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.dark .dot-grid {
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size:
-    24px 24px,
-    48px 48px,
-    48px 48px;
+.interactive-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+.interactive-bg::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(30, 109, 158, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -100px;
+  right: -100px;
+  pointer-events: none;
+  animation: float-reverse 25s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -50px);
+  }
+  50% {
+    transform: translate(-30px, 30px);
+  }
+  75% {
+    transform: translate(80px, 60px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-50px, 50px);
+  }
+  50% {
+    transform: translate(30px, -30px);
+  }
+  75% {
+    transform: translate(-80px, -60px);
+  }
 }
 
 @keyframes glow-red {
@@ -67,4 +121,9 @@ body {
 .glow-safe {
   animation: glow-green 2s ease-in-out infinite;
   border: 2px solid rgb(34, 197, 94);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
