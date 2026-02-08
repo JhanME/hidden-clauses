@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       model: "gemini-2.0-flash",
       generationConfig: {
         temperature: 0.1,
-        maxOutputTokens: 256,
+        maxOutputTokens: 1024,
         responseMimeType: "application/json",
       },
     });

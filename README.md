@@ -9,69 +9,69 @@
   <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-Deployment-000000?logo=vercel&logoColor=white" alt="Vercel" /></a>
 </p>
 
-## Sobre el Proyecto
+## About the Project
 
-**Hidden Clauses** es una herramienta esencial diseñada para empoderar a los usuarios frente a la complejidad legal. Utilizando la potencia de la Inteligencia Artificial de **Google Gemini**, nuestra aplicación analiza contratos en formato PDF para detectar, resaltar y explicar cláusulas potencialmente abusivas, riesgosas o confusas "letras pequeñas" que a menudo pasan desapercibidas.
+**Hidden Clauses** is an essential tool designed to empower users against legal complexity. Using the power of **Google Gemini** Artificial Intelligence, our application analyzes PDF contracts to detect, highlight, and explain potentially abusive, risky, or confusing "fine print" clauses that often go unnoticed.
 
-El objetivo es simple pero vital: **Leer lo que nadie lee para proteger lo que todos firman.**
+The goal is simple but vital: **Read what no one reads to protect what everyone signs.**
 
-Esta aplicación fue construida como parte de un Hackathon, demostrando cómo la IA puede tener un impacto real y positivo en la seguridad jurídica cotidiana de las personas.
+This application was built as part of a Hackathon, demonstrating how AI can have a real and positive impact on people's daily legal security.
 
-## Características Principales
+## Key Features
 
-*   **Análisis Inteligente de Contratos:** Sube tu PDF y deja que la IA escanee cada párrafo en busca de términos desfavorables.
-*   **Comparación de Documentos:** Sube dos versiones de un contrato para identificar cambios sutiles pero críticos entre ellas.
-*   **Chat con tu Contrato:** ¿Tienes dudas específicas? Pregúntale directamente al documento y obtén respuestas basadas en el contexto legal del archivo.
-*   **Detección de Datos Sensibles:** Identificación automática de información personal (PII) antes del análisis para proteger la privacidad.
-*   **Interfaz Moderna e Intuitiva:** Diseñada con las últimas tecnologías web para una experiencia de usuario fluida y agradable.
+*   **Intelligent Contract Analysis:** Upload your PDF and let AI scan every paragraph for unfavorable terms.
+*   **Document Comparison:** Upload two versions of a contract to identify subtle but critical changes between them.
+*   **Chat with your Contract:** Have specific doubts? Ask the document directly and get answers based on the file's legal context.
+*   **Sensitive Data Detection:** Automatic identification of personal information (PII) before analysis to protect privacy.
+*   **Modern & Intuitive Interface:** Designed with the latest web technologies for a smooth and pleasant user experience.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-Este proyecto aprovecha un stack tecnológico moderno y robusto:
+This project leverages a modern and robust tech stack:
 
-*   **Frontend & Framework:** [Next.js 16](https://nextjs.org/) con [React 19](https://react.dev/) para un rendimiento óptimo y renderizado del lado del servidor.
-*   **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un código seguro y escalable.
-*   **Estilos:** [Tailwind CSS 4](https://tailwindcss.com/) para un diseño rápido, responsivo y visualmente atractivo.
-*   **Inteligencia Artificial:** [Google Gemini API](https://ai.google.dev/) (`gemini-1.5-flash`) para el procesamiento de lenguaje natural y análisis legal.
-*   **Manejo de PDF:** `react-pdf` para la visualización y `pdf-parse` (o similar) para la extracción de texto.
-*   **Iconografía:** [Lucide React](https://lucide.dev/) para iconos limpios y consistentes.
+*   **Frontend & Framework:** [Next.js 16](https://nextjs.org/) with [React 19](https://react.dev/) for optimal performance and server-side rendering.
+*   **Language:** [TypeScript](https://www.typescriptlang.org/) for secure and scalable code.
+*   **Styling:** [Tailwind CSS 4](https://tailwindcss.com/) for fast, responsive, and visually appealing design.
+*   **Artificial Intelligence:** [Google Gemini API](https://ai.google.dev/) (`gemini-2.0-flash`) for natural language processing and legal analysis.
+*   **PDF Handling:** `react-pdf` for visualization and `pdf-parse` (or similar) for text extraction.
+*   **Icons:** [Lucide React](https://lucide.dev/) for clean and consistent icons.
 
-## Comenzando
+## Getting Started
 
-Sigue estos pasos para ejecutar el proyecto localmente.
+Follow these steps to run the project locally.
 
-### Prerrequisitos
+### Prerequisites
 
-*   Node.js (versión LTS recomendada)
+*   Node.js (LTS version recommended)
 *   npm
 
-### Instalación
+### Installation
 
-1.  **Clonar el repositorio**
+1.  **Clone the repository**
     ```bash
     git clone https://github.com/JhanME/hidden-clauses.git
     cd hidden-clauses
     ```
 
-2.  **Instalar dependencias**
+2.  **Install dependencies**
     ```bash
     npm install
     ```
 
-3.  **Configurar variables de entorno**
-    Crea un archivo `.env.local` en la raíz del proyecto y añade tu clave API de Google Gemini:
+3.  **Configure environment variables**
+    Create a `.env.local` file in the root of the project and add your Google Gemini API key:
     ```env
-    GEMINI_API_KEY=tu_clave_api_aqui
+    GEMINI_API_KEY=your_api_key_here
     ```
 
-4.  **Ejecutar el servidor de desarrollo**
+4.  **Run the development server**
     ```bash
     npm run dev
     ```
 
-5.  Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
+5.  Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-## Equipo
+## Team
 
 *   **Andres** - [GitHub](https://github.com/AndresRJ18)
 *   **Wilmer** - [GitHub](https://github.com/sebastianherrera77)
@@ -79,5 +79,5 @@ Sigue estos pasos para ejecutar el proyecto localmente.
 
 ---
 <p align="center">
-  Hecho en el Gemini 3 Hackathon
+  Made in the Gemini 3 Hackathon
 </p>

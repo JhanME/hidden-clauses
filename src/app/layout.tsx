@@ -12,9 +12,7 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Hidden Clauses",
   description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
-  openGraph: {
-    images: ["/opengraph-image.png"],
-  },
+
 };
 
 export default function RootLayout({

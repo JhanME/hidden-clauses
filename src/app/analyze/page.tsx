@@ -16,7 +16,7 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
   loading: () => (
     <div className="flex h-full items-center justify-center">
-      <p className="text-zinc-500">Cargando visor PDF...</p>
+      <p className="text-zinc-500">Loading PDF viewer...</p>
     </div>
   ),
 });
@@ -89,13 +89,13 @@ export default function AnalyzePage() {
       });
 
       if (!validateResponse.ok) {
-        throw new Error("Error al verificar el documento");
+        throw new Error("Error validating document");
       }
 
       const validation: ValidationResult = await validateResponse.json();
 
       if (!validation.isContract) {
-        setError(`Este documento no es un contrato. Tipo detectado: ${validation.documentType}. ${validation.reason}`);
+        setError(`This document is not a contract. Detected type: ${validation.documentType}. ${validation.reason}`);
         setIsAnalyzing(false);
         setAnalysisStep("idle");
         return;
@@ -187,9 +187,12 @@ export default function AnalyzePage() {
       <header className="relative z-10 shrink-0 border-b border-zinc-200 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-              Hidden Clauses
-            </h1>
+            <div className="flex items-center gap-2 mb-1">
+              <img src="/logo_bg2.png" alt="Hidden Clauses Logo" className="h-6 w-6 object-contain" />
+              <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+                Hidden Clauses
+              </h1>
+            </div>
             <p className="text-sm text-zinc-500">AI-powered PDF contract analysis</p>
           </div>
           <div className="flex items-center gap-3">
@@ -200,7 +203,7 @@ export default function AnalyzePage() {
                 onClick={handleReset}
                 className="rounded-lg bg-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-600"
               >
-                Nuevo análisis
+                New Analysis
               </button>
             )}
           </div>
@@ -232,7 +235,7 @@ export default function AnalyzePage() {
                   : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
-                Análisis
+                Analysis
               </button>
               <button
                 onClick={() => setActiveTab("chat")}
@@ -241,7 +244,7 @@ export default function AnalyzePage() {
                   : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
-                Preguntas
+                Chat
               </button>
             </div>
           )}

@@ -21,7 +21,7 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
           setFile2(file);
         }
       } else {
-        alert("Por favor sube un archivo PDF.");
+        alert("Please upload a PDF file.");
       }
     },
     []
@@ -81,13 +81,12 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
         setIsDragging(true);
       }}
       onDragLeave={() => setIsDragging(false)}
-      className={`flex flex-1 flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 transition-colors ${
-        isDragging
-          ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20"
-          : file
-            ? "border-green-500 bg-green-50 dark:border-green-600 dark:bg-green-950/20"
-            : "border-zinc-300 dark:border-zinc-700"
-      }`}
+      className={`flex flex-1 flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 transition-colors ${isDragging
+        ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20"
+        : file
+          ? "border-green-500 bg-green-50 dark:border-green-600 dark:bg-green-950/20"
+          : "border-zinc-300 dark:border-zinc-700"
+        }`}
     >
       {file ? (
         <div className="flex flex-col items-center">
@@ -107,7 +106,7 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
             </svg>
           </div>
           <p className="mb-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Contrato {slot}
+            Contract {slot}
           </p>
           <p className="mb-3 max-w-[200px] truncate text-xs text-zinc-500 dark:text-zinc-400">
             {file.name}
@@ -116,7 +115,7 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
             onClick={() => removeFile(slot)}
             className="text-xs text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
           >
-            Eliminar
+            Remove
           </button>
         </div>
       ) : (
@@ -135,13 +134,13 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
             />
           </svg>
           <p className="mb-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Contrato {slot}
+            Contract {slot}
           </p>
           <p className="mb-3 text-xs text-zinc-500 dark:text-zinc-400">
-            Arrastra o haz clic
+            Drag or click
           </p>
           <label className="cursor-pointer rounded-lg bg-zinc-200 px-4 py-2 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-600">
-            Seleccionar PDF
+            Select PDF
             <input
               type="file"
               accept="application/pdf"
@@ -161,10 +160,10 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
     <div className="flex h-full flex-col items-center justify-center p-6">
       <div className="mb-6 text-center">
         <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-zinc-200">
-          Comparar Contratos
+          Compare Contracts
         </h2>
         <p className="text-sm text-zinc-500 dark:text-zinc-400">
-          Sube dos contratos para comparar cuál te conviene más
+          Upload two contracts to compare which one suits you best
         </p>
       </div>
 
@@ -190,7 +189,7 @@ export default function DualPdfUploader({ onFilesSelected }: DualPdfUploaderProp
         disabled={!file1 || !file2}
         className="mt-6 rounded-lg bg-blue-600 px-8 py-3 text-sm font-bold text-white transition-all hover:bg-blue-500 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-blue-600 disabled:hover:shadow-none dark:bg-cyan-500 dark:hover:bg-cyan-400"
       >
-        Comparar contratos
+        Compare contracts
       </button>
     </div>
   );

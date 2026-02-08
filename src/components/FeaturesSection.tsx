@@ -5,23 +5,23 @@ import { Shield, Scale, MessageSquare, Zap } from "lucide-react";
 const features = [
     {
         icon: <Shield className="h-6 w-6" />,
-        title: "Análisis de Riesgos",
-        description: "Nuestra IA escanea cada cláusula para identificar riesgos potenciales, multas ocultas y términos abusivos.",
+        title: "Risk Analysis",
+        description: "Our AI scans every clause to identify potential risks, hidden fees, and abusive terms.",
     },
     {
         icon: <Scale className="h-6 w-6" />,
-        title: "Comparación Inteligente",
-        description: "Sube dos versiones de un contrato y detecta las diferencias sutiles que podrían cambiar el acuerdo.",
+        title: "Intelligent Comparison",
+        description: "Upload two versions of a contract and detect subtle differences that could change the agreement.",
     },
     {
         icon: <MessageSquare className="h-6 w-6" />,
-        title: "Chat con tu Documento",
-        description: "¿Tienes dudas? Pregúntale directamente a nuestro chat asistente sobre cualquier punto del contrato.",
+        title: "Chat with your Document",
+        description: "Have doubts? Ask our chat assistant directly about any point in the contract.",
     },
     {
         icon: <Zap className="h-6 w-6" />,
-        title: "Resultados Instantáneos",
-        description: "Obtén un desglose detallado en segundos, sin esperas y con explicaciones claras.",
+        title: "Instant Results",
+        description: "Get a detailed breakdown in seconds, without waiting and with clear explanations.",
     },
 ];
 
@@ -35,10 +35,10 @@ export default function FeaturesSection() {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4">
-                        Todo lo que necesitas para firmar tranquilo
+                        Everything you need to sign with confidence
                     </h2>
                     <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                        Herramientas profesionales diseñadas para proteger tus intereses sin complicaciones legales.
+                        Professional tools designed to protect your interests without legal complications.
                     </p>
                 </div>
 

@@ -5,23 +5,23 @@ import { FileUp, Search, CheckCircle, ShieldAlert } from "lucide-react";
 const steps = [
     {
         icon: <FileUp className="h-8 w-8" />,
-        title: "1. Carga tu Contrato",
-        description: "Sube tu archivo PDF en segundos. Tu documento se procesa en memoria para garantizar máxima privacidad.",
+        title: "1. Upload your Contract",
+        description: "Upload your PDF file in seconds. Your document is processed in memory to ensure maximum privacy.",
     },
     {
         icon: <ShieldAlert className="h-8 w-8" />,
-        title: "2. Protección Inteligente",
-        description: "Automáticamente detectamos y filtramos datos sensibles antes de iniciar el análisis para proteger tu identidad.",
+        title: "2. Intelligent Protection",
+        description: "We automatically detect and filter sensitive data before starting the analysis to protect your identity.",
     },
     {
         icon: <Search className="h-8 w-8" />,
-        title: "3. Análisis Profundo",
-        description: "Nuestra IA impulsada por Gemini examina cada cláusula buscando riesgos ocultos y términos abusivos.",
+        title: "3. Deep Analysis",
+        description: "Our AI powered by Gemini examines each clause looking for hidden risks and abusive terms.",
     },
     {
         icon: <CheckCircle className="h-8 w-8" />,
-        title: "4. Claridad Instantánea",
-        description: "Recibe un informe detallado con alertas visuales y explicaciones claras sobre lo que estás firmando.",
+        title: "4. Instant Clarity",
+        description: "Receive a detailed report with visual alerts and clear explanations about what you are signing.",
     },
 ];
 
@@ -31,10 +31,10 @@ export default function HowItWorks() {
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4">
-                        ¿Cómo funciona?
+                        How it works?
                     </h2>
                     <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                        Cuatro pasos simples para asegurar tu tranquilidad legal.
+                        Four simple steps to ensure your legal peace of mind.
                     </p>
                 </div>
 
