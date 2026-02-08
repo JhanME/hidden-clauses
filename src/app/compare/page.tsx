@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -223,6 +223,28 @@ export default function ComparePage() {
     comparing: "Comparing contracts...",
   };
 
+
+  const comparisonMessages = [
+    "Reading both contracts...",
+    "Aligning clauses side by side...",
+    "Detecting changes in wording...",
+    "Checking for deleted or added terms...",
+    "Analyzing impact of modifications...",
+    "Almost done, summarizing differences...",
+    "Preparing your comparison report...",
+  ];
+
+  const [loadingMsgIndex, setLoadingMsgIndex] = useState(0);
+
+  useEffect(() => {
+    if (isComparing && comparisonStep === "comparing") {
+      const interval = setInterval(() => {
+        setLoadingMsgIndex((prev) => (prev + 1) % comparisonMessages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isComparing, comparisonStep]);
+
   return (
     <div className="relative flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className="dot-grid pointer-events-none absolute inset-0 z-0" />
@@ -324,11 +346,21 @@ export default function ComparePage() {
             >
               {/* Show loading state or results */}
               {isComparing ? (
-                <div className="flex flex-1 flex-col items-center justify-center p-8">
-                  <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600" />
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {stepMessages[comparisonStep]}
-                  </p>
+                <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8">
+                  <div className="relative">
+                    <div className="h-16 w-16 animate-spin rounded-full border-4 border-cyan-100 border-t-cyan-500 dark:border-cyan-900 dark:border-t-cyan-400" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="h-2 w-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
+                    </div>
+                  </div>
+                  <div className="text-center space-y-1">
+                    <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100 animate-in fade-in slide-in-from-bottom-2 duration-500 key={loadingMsgIndex}">
+                      {comparisonStep === "comparing" ? comparisonMessages[loadingMsgIndex] : stepMessages[comparisonStep]}
+                    </p>
+                    {comparisonStep === "comparing" && (
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400">This might take a moment...</p>
+                    )}
+                  </div>
                 </div>
               ) : error ? (
                 <div className="flex flex-1 flex-col items-center justify-center p-8">
@@ -356,7 +388,7 @@ export default function ComparePage() {
                     <button
                       onClick={() => setActiveTab("comparison")}
                       className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "comparison"
-                        ? "border-b-2 border-blue-600 text-blue-600"
+                        ? "border-b-2 border-cyan-600 text-cyan-600"
                         : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                         }`}
                     >
@@ -365,7 +397,7 @@ export default function ComparePage() {
                     <button
                       onClick={() => setActiveTab("chat")}
                       className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "chat"
-                        ? "border-b-2 border-blue-600 text-blue-600"
+                        ? "border-b-2 border-cyan-600 text-cyan-600"
                         : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                         }`}
                     >

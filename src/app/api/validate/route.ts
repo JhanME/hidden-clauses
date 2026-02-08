@@ -29,10 +29,11 @@ export async function POST(request: NextRequest) {
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-3-pro-preview",
       generationConfig: {
         temperature: 0.1,
-        maxOutputTokens: 1024,
+        // Increase token limit to prevent truncation
+        maxOutputTokens: 8192,
         responseMimeType: "application/json",
       },
     });
@@ -48,12 +49,16 @@ export async function POST(request: NextRequest) {
     ]);
 
     const responseText = result.response.text();
+    console.log("Raw Gemini response (validate):", responseText);
 
-    // Strip markdown code fences if present
-    const cleaned = responseText
-      .replace(/^```(?:json)?\s*\n?/i, "")
-      .replace(/\n?```\s*$/i, "")
-      .trim();
+    let cleaned = responseText;
+    // Find the first '{' and the last '}'
+    const firstOpen = responseText.indexOf('{');
+    const lastClose = responseText.lastIndexOf('}');
+
+    if (firstOpen !== -1 && lastClose !== -1 && lastClose > firstOpen) {
+      cleaned = responseText.substring(firstOpen, lastClose + 1);
+    }
 
     const validation: ValidationResult = JSON.parse(cleaned);
 

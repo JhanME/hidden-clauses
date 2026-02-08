@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import type { AnalysisResult, Clause } from "@/lib/types";
 
 type AnalysisStep = "idle" | "validating" | "scanning" | "analyzing";
@@ -67,13 +68,35 @@ const stepMessages: Record<AnalysisStep, { title: string; subtitle: string }> = 
   },
 };
 
+
+const analysisMessages = [
+  "Reading your contract...",
+  "Analyzing clauses for hidden risks...",
+  "Comparing against legal standards...",
+  "Identifying potential loopholes...",
+  "Translating legalese to plain English...",
+  "Almost there, detecting fine print...",
+  "Generating your safety report...",
+];
+
 export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep = "analyzing" }: AnalysisPanelProps) {
+  const [loadingMsgIndex, setLoadingMsgIndex] = useState(0);
+
+  useEffect(() => {
+    if (isAnalyzing && analysisStep === "analyzing") {
+      const interval = setInterval(() => {
+        setLoadingMsgIndex((prev) => (prev + 1) % analysisMessages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isAnalyzing, analysisStep]);
+
   if (error) {
     return (
       <div className="flex h-full items-center justify-center p-8">
-        <div className="rounded-xl bg-red-50 p-6 text-center dark:bg-red-950/20">
-          <p className="text-lg font-medium text-red-700 dark:text-red-400">Analysis Error</p>
-          <p className="mt-2 text-sm text-red-600 dark:text-red-300">{error}</p>
+        <div className="rounded-xl bg-cyan-50 p-6 text-center dark:bg-cyan-950/20 border border-cyan-200 dark:border-cyan-800">
+          <p className="text-lg font-bold text-cyan-700 dark:text-cyan-400">Oops! It looks like this isn't a contract.</p>
+          <p className="mt-2 text-sm text-cyan-600 dark:text-cyan-300">{error}</p>
         </div>
       </div>
     );
@@ -81,13 +104,22 @@ export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep
 
   if (isAnalyzing) {
     const { title, subtitle } = stepMessages[analysisStep];
+    const displayTitle = analysisStep === "analyzing" ? analysisMessages[loadingMsgIndex] : title;
+
     return (
       <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-800 dark:border-zinc-600 dark:border-t-zinc-200" />
-        <p className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
-          {title}
-        </p>
-        <p className="text-sm text-zinc-500">{subtitle}</p>
+        <div className="relative">
+          <div className="h-16 w-16 animate-spin rounded-full border-4 border-cyan-100 border-t-cyan-500 dark:border-cyan-900 dark:border-t-cyan-400" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="h-2 w-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
+          </div>
+        </div>
+        <div className="text-center space-y-1">
+          <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100 animate-in fade-in slide-in-from-bottom-2 duration-500 key={loadingMsgIndex}">
+            {displayTitle}
+          </p>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">{subtitle}</p>
+        </div>
       </div>
     );
   }
@@ -109,14 +141,14 @@ export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep
       {/* Verdict banner */}
       <div
         className={`shrink-0 rounded-xl p-4 text-center ${isHarmful
-            ? "bg-red-100 dark:bg-red-950/30"
-            : "bg-green-100 dark:bg-green-950/30"
+          ? "bg-red-100 dark:bg-red-950/30"
+          : "bg-green-100 dark:bg-green-950/30"
           }`}
       >
         <p
           className={`text-lg font-bold ${isHarmful
-              ? "text-red-700 dark:text-red-400"
-              : "text-green-700 dark:text-green-400"
+            ? "text-red-700 dark:text-red-400"
+            : "text-green-700 dark:text-green-400"
             }`}
         >
           {isHarmful ? "Harmful Clauses Detected" : "Contract Appears Safe"}

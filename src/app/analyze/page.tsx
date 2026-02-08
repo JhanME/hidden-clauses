@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 import PdfUploader from "@/components/PdfUploader";
 import AnalysisPanel from "@/components/AnalysisPanel";
@@ -187,12 +188,12 @@ export default function AnalyzePage() {
       <header className="relative z-10 shrink-0 border-b border-zinc-200 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
         <div className="flex items-center justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-1">
+            <Link href="/" className="flex items-center gap-2 mb-1">
               <img src="/logo_bg2.png" alt="Hidden Clauses Logo" className="h-6 w-6 object-contain" />
               <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
                 Hidden Clauses
               </h1>
-            </div>
+            </Link>
             <p className="text-sm text-zinc-500">AI-powered PDF contract analysis</p>
           </div>
           <div className="flex items-center gap-3">
@@ -231,7 +232,7 @@ export default function AnalyzePage() {
               <button
                 onClick={() => setActiveTab("analysis")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "analysis"
-                  ? "border-b-2 border-blue-600 text-blue-600"
+                  ? "border-b-2 border-cyan-600 text-cyan-600"
                   : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
@@ -240,7 +241,7 @@ export default function AnalyzePage() {
               <button
                 onClick={() => setActiveTab("chat")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "chat"
-                  ? "border-b-2 border-blue-600 text-blue-600"
+                  ? "border-b-2 border-cyan-600 text-cyan-600"
                   : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
