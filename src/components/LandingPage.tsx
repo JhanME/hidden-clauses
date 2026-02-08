@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { Cloud, Laptop } from "lucide-react";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+
 import GitHubStars from "@/components/GitHubStars";
 import ThemeToggle from "@/components/ThemeToggle";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -22,7 +22,7 @@ const taglines = [
   "Tu defensa contra las letras pequeñas.",
 ];
 export default function LandingPage() {
-  const { isLoaded, isSignedIn } = useAuth();
+
   const tagline = useMemo(
     () => taglines[Math.floor(Math.random() * taglines.length)],
     []
@@ -78,72 +78,38 @@ export default function LandingPage() {
           {/* Action Cards */}
           <div className="flex w-full max-w-3xl flex-col gap-6 sm:flex-row mb-20">
             {/* Analyze Card */}
-            {isLoaded && !isSignedIn ? (
-              <SignInButton mode="modal" forceRedirectUrl="/analyze">
-                <button className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10">
-                  <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
+            <Link
+              href="/analyze"
+              className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10"
+            >
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
 
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                    <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
 
-                  <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Analizar contrato</h3>
-                  <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Detecta cláusulas ocultas, riesgos y oportunidades en segundos.</p>
-                </button>
-              </SignInButton>
-            ) : (
-              <Link
-                href="/analyze"
-                className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10"
-              >
-                <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
-
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-
-                <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Analizar contrato</h3>
-                <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Detecta cláusulas ocultas, riesgos y oportunidades en segundos.</p>
-              </Link>
-            )}
+              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Analizar contrato</h3>
+              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Detecta cláusulas ocultas, riesgos y oportunidades en segundos.</p>
+            </Link>
 
             {/* Compare Card */}
-            {isLoaded && !isSignedIn ? (
-              <SignInButton mode="modal" forceRedirectUrl="/compare">
-                <button className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10">
-                  <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
+            <Link
+              href="/compare"
+              className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10"
+            >
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
 
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                    <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
 
-                  <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Comparar contratos</h3>
-                  <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Sube dos versiones y encuentra las diferencias críticas.</p>
-                </button>
-              </SignInButton>
-            ) : (
-              <Link
-                href="/compare"
-                className="group relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 text-left shadow-lg transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/10"
-              >
-                <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/20 dark:bg-cyan-500/10 dark:group-hover:bg-cyan-500/20" />
-
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-
-                <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Comparar contratos</h3>
-                <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Sube dos versiones y encuentra las diferencias críticas.</p>
-              </Link>
-            )}
+              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Comparar contratos</h3>
+              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Sube dos versiones y encuentra las diferencias críticas.</p>
+            </Link>
           </div>
         </div>
 

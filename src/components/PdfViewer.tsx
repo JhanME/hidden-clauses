@@ -100,7 +100,7 @@ export default function PdfViewer({ fileUrl, clauses }: PdfViewerProps) {
             ? "border-bottom: 2px solid rgb(234, 179, 8)"
             : "border-bottom: 2px solid rgb(34, 197, 94)";
 
-      return `<mark style="background-color: ${color}; ${borderColor}; padding: 1px 0; border-radius: 2px;" title="Cláusula ${bestMatch.clauseNumber} — ${bestMatch.severity.toUpperCase()}">${text}</mark>`;
+      return `<mark style="background-color: ${color}; ${borderColor}; color: transparent; padding: 1px 0; border-radius: 2px;" title="Cláusula ${bestMatch.clauseNumber} — ${bestMatch.severity.toUpperCase()}">${text}</mark>`;
     },
     [snippetMatches]
   );

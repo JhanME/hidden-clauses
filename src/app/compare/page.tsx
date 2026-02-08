@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
+
 import DualPdfUploader from "@/components/DualPdfUploader";
 import ComparisonPanel from "@/components/ComparisonPanel";
 import ComparisonChatPanel from "@/components/ComparisonChatPanel";
@@ -227,22 +227,22 @@ export default function ComparePage() {
   const combinedSensitiveResult: SensitiveDataScanResult | null =
     sensitiveDataResult.contract1?.hasSensitiveData || sensitiveDataResult.contract2?.hasSensitiveData
       ? {
-          hasSensitiveData: true,
-          matches: [
-            ...(sensitiveDataResult.contract1?.matches || []),
-            ...(sensitiveDataResult.contract2?.matches || []),
-          ],
-          summary: [
-            sensitiveDataResult.contract1?.hasSensitiveData
-              ? `Contrato 1: ${sensitiveDataResult.contract1.summary}`
-              : null,
-            sensitiveDataResult.contract2?.hasSensitiveData
-              ? `Contrato 2: ${sensitiveDataResult.contract2.summary}`
-              : null,
-          ]
-            .filter(Boolean)
-            .join(". "),
-        }
+        hasSensitiveData: true,
+        matches: [
+          ...(sensitiveDataResult.contract1?.matches || []),
+          ...(sensitiveDataResult.contract2?.matches || []),
+        ],
+        summary: [
+          sensitiveDataResult.contract1?.hasSensitiveData
+            ? `Contrato 1: ${sensitiveDataResult.contract1.summary}`
+            : null,
+          sensitiveDataResult.contract2?.hasSensitiveData
+            ? `Contrato 2: ${sensitiveDataResult.contract2.summary}`
+            : null,
+        ]
+          .filter(Boolean)
+          .join(". "),
+      }
       : null;
 
   const glowClass = result
@@ -284,7 +284,7 @@ export default function ComparePage() {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <UserButton afterSignOutUrl="/" />
+
             {(file1 || file2) && (
               <button
                 onClick={handleReset}
@@ -315,21 +315,19 @@ export default function ComparePage() {
               <div className="mb-2 flex gap-2 lg:hidden">
                 <button
                   onClick={() => setActivePdf(1)}
-                  className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                    activePdf === 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
-                  }`}
+                  className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${activePdf === 1
+                    ? "bg-blue-600 text-white"
+                    : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
+                    }`}
                 >
                   Contrato 1
                 </button>
                 <button
                   onClick={() => setActivePdf(2)}
-                  className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                    activePdf === 2
-                      ? "bg-blue-600 text-white"
-                      : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
-                  }`}
+                  className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${activePdf === 2
+                    ? "bg-blue-600 text-white"
+                    : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
+                    }`}
                 >
                   Contrato 2
                 </button>
@@ -337,9 +335,8 @@ export default function ComparePage() {
 
               {/* PDF 1 */}
               <div
-                className={`flex-1 rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 ${
-                  activePdf !== 1 ? "hidden lg:flex lg:flex-col" : "flex flex-col"
-                }`}
+                className={`flex-1 rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 ${activePdf !== 1 ? "hidden lg:flex lg:flex-col" : "flex flex-col"
+                  }`}
               >
                 <div className="mb-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
                   Contrato 1
@@ -392,21 +389,19 @@ export default function ComparePage() {
                   <div className="shrink-0 flex border-b border-zinc-200 dark:border-zinc-700">
                     <button
                       onClick={() => setActiveTab("comparison")}
-                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-                        activeTab === "comparison"
-                          ? "border-b-2 border-blue-600 text-blue-600"
-                          : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-                      }`}
+                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "comparison"
+                        ? "border-b-2 border-blue-600 text-blue-600"
+                        : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                        }`}
                     >
                       Comparación
                     </button>
                     <button
                       onClick={() => setActiveTab("chat")}
-                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-                        activeTab === "chat"
-                          ? "border-b-2 border-blue-600 text-blue-600"
-                          : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
-                      }`}
+                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "chat"
+                        ? "border-b-2 border-blue-600 text-blue-600"
+                        : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                        }`}
                     >
                       Preguntas
                     </button>
@@ -436,9 +431,8 @@ export default function ComparePage() {
 
             {/* Right PDF viewer */}
             <div
-              className={`w-full rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 lg:w-1/4 ${
-                activePdf !== 2 ? "hidden lg:flex lg:flex-col" : "flex flex-col"
-              }`}
+              className={`w-full rounded-2xl bg-white p-4 shadow-sm dark:bg-zinc-900 lg:w-1/4 ${activePdf !== 2 ? "hidden lg:flex lg:flex-col" : "flex flex-col"
+                }`}
             >
               <div className="mb-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 Contrato 2
