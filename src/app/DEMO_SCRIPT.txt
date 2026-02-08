@@ -1,0 +1,37 @@
+
+# Hidden Clauses - Hackathon Demo Script
+
+**(Intro - 0:00-0:30)**
+"Hello everyone. We all sign contracts—employment agreements, leases, terms of service. But let's be honest: who actually reads the fine print? That's where **Hidden Clauses** comes in. We built an AI-powered tool to protect you from what you don't see."
+
+**(Landing Page - 0:30-0:50)**
+*Action: Show Landing Page*
+"Here is our platform. As you can see, it's designed to be clean and accessible. We don't want to overwhelm you with legal jargon; we want to give you clarity. We have two main powerful features: **Analyze** and **Compare**."
+
+**(Scene 1: Contract Analysis - 0:50-2:00)**
+*Action: Click on 'Analyze contract' and upload a PDF*
+"Let's start by analyzing a standard employment contract. I'll drag and drop the PDF here. 
+Crucially, unlike generic AI tools where you upload complete files blindly, our system puts **Privacy First**. Before the AI even reads the legal terms, our system scans for sensitive personal data to warn you. Your identity matters."
+
+*Action: Click 'Analyze' and wait for results*
+"Now, Gemini 3.0 is scanning every single paragraph. It's not just looking for keywords; it's acting like an expert lawyer with 20 years of experience."
+
+*Action: Scroll through results*
+"Look at this. It didn't just summarize the document. It flagged specific clauses as **Harmful** in red and **Warning** in yellow.
+For example, here's a clause about 'Unilateral Termination'. The AI explains *why* this is risky in simple English. It translates 'legalese' into something we can all understand."
+
+*Action: Click on 'Chat' tab*
+"Still not sure? We can ask the document directly. 'Can I be fired without notice?' The AI answers based strictly on *this* specific contract context."
+
+**(Scene 2: Contract Comparison - 2:00-3:00)**
+*Action: Navigate to 'Compare contracts'*
+"Now, let's look at a common scenario: you receive a new version of a contract you already saw. Did they change anything sneaky?"
+
+*Action: Upload two versions of a contract*
+"I'll upload the original version and the 'final' version sent by the other party. Let's compare."
+
+*Action: Show comparison results*
+"In seconds, Hidden Clauses detects the differences side-by-side. A general chatbot might just give you a summary, but here we align every clause to show exactly what changed—like this 'Non-Compete' duration increasing from 1 to 5 years. It's precision you can't get with a simple prompt."
+
+**(Conclusion - 3:00-3:30)**
+"Hidden Clauses isn't just a tool; it's a shield. We empower everyday users to sign with confidence, leveling the playing field against complex legal teams. Read what no one reads. Protect what everyone signs. Thank you."

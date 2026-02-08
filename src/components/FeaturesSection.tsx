@@ -29,7 +29,7 @@ export default function FeaturesSection() {
     return (
         <section className="py-24 relative overflow-hidden">
             {/* Background blobs */}
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 dark:bg-blue-500/5 pointer-events-none" />
+            <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 dark:bg-cyan-500/5 pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-y-1/4 translate-x-1/4 dark:bg-purple-500/5 pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">

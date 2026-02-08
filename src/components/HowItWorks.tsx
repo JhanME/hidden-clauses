@@ -48,7 +48,7 @@ export default function HowItWorks() {
                         {steps.map((step, index) => (
                             <div key={index} className="flex flex-col items-center text-center">
                                 <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-white border border-zinc-200 shadow-sm dark:bg-zinc-950 dark:border-zinc-800">
-                                    <div className="text-blue-600 dark:text-blue-400">
+                                    <div className="text-cyan-500 dark:text-cyan-400">
                                         {step.icon}
                                     </div>
                                 </div>

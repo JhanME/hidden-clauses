@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-3-flash-preview",
       generationConfig: {
         temperature: 0.2,
         responseMimeType: "application/json",
@@ -55,12 +55,11 @@ export async function POST(request: NextRequest) {
     ]);
 
     const responseText = result.response.text();
+    console.log("Raw Gemini response (analyze):", responseText);
 
-    // Strip markdown code fences if present (fallback)
-    const cleaned = responseText
-      .replace(/^```(?:json)?\s*\n?/i, "")
-      .replace(/\n?```\s*$/i, "")
-      .trim();
+    // Extract JSON object using regex to handle potential markdown or extra text
+    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+    const cleaned = jsonMatch ? jsonMatch[0] : responseText;
 
     const analysis: AnalysisResult = JSON.parse(cleaned);
 
