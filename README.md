@@ -1,12 +1,12 @@
 # Hidden Clauses
 
 <p align="center">
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.1-black?logo=next.js&logoColor=white" alt="Next.js" /></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" alt="React" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript&logoColor=white" alt="TypeScript" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
-  <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Google%20Gemini-AI-8E75B2?logo=google&logoColor=white" alt="Google Gemini" /></a>
-  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-Deployment-000000?logo=vercel&logoColor=white" alt="Vercel" /></a>
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" /></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+  <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Google%20Gemini-AI-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" /></a>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
 </p>
 
 ## Sobre el Proyecto
@@ -32,7 +32,7 @@ Este proyecto aprovecha un stack tecnológico moderno y robusto:
 *   **Frontend & Framework:** [Next.js 16](https://nextjs.org/) con [React 19](https://react.dev/) para un rendimiento óptimo y renderizado del lado del servidor.
 *   **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un código seguro y escalable.
 *   **Estilos:** [Tailwind CSS 4](https://tailwindcss.com/) para un diseño rápido, responsivo y visualmente atractivo.
-*   **Inteligencia Artificial:** [Google Gemini API](https://ai.google.dev/) (`gemini-1.5-flash`) para el procesamiento de lenguaje natural y análisis legal.
+*   **Inteligencia Artificial:** [Google Gemini API](https://ai.google.dev/) para el procesamiento de lenguaje natural y análisis legal.
 *   **Manejo de PDF:** `react-pdf` para la visualización y `pdf-parse` (o similar) para la extracción de texto.
 *   **Iconografía:** [Lucide React](https://lucide.dev/) para iconos limpios y consistentes.
 
