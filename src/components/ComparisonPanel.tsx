@@ -30,11 +30,10 @@ function DifferenceRow({ diff }: { diff: ComparisonDifference }) {
           <span className="text-sm text-zinc-400">=</span>
         ) : (
           <span
-            className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${
-              diff.favoredContract === "contract1"
-                ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
-            }`}
+            className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${diff.favoredContract === "contract1"
+              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+              : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
+              }`}
           >
             C{diff.favoredContract === "contract1" ? "1" : "2"}
           </span>
@@ -61,7 +60,7 @@ function SeverityBar({
       <div className="mb-1 flex items-center justify-between text-xs">
         <span className="font-medium text-zinc-600 dark:text-zinc-400">{label}</span>
         <span className="text-zinc-500">
-          {harmful} perjudiciales, {warning} advertencias, {safe} seguras
+          {harmful} harmful, {warning} warnings, {safe} safe
         </span>
       </div>
       <div className="flex h-2 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700">
@@ -93,10 +92,10 @@ export default function ComparisonPanel({ result }: ComparisonPanelProps) {
 
   const recommendationLabel =
     result.recommendation === "contract1"
-      ? "Contrato 1"
+      ? "Contract 1"
       : result.recommendation === "contract2"
-        ? "Contrato 2"
-        : "Ambos similares";
+        ? "Contract 2"
+        : "Both similar";
 
   const recommendationColor =
     result.recommendation === "similar"
@@ -113,8 +112,8 @@ export default function ComparisonPanel({ result }: ComparisonPanelProps) {
           </span>
           <span className="text-lg font-bold text-zinc-800 dark:text-zinc-200">
             {result.recommendation === "similar"
-              ? "Contratos similares"
-              : `Recomendación: ${recommendationLabel}`}
+              ? "Similar contracts"
+              : `Recommendation: ${recommendationLabel}`}
           </span>
         </div>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -125,33 +124,33 @@ export default function ComparisonPanel({ result }: ComparisonPanelProps) {
       {/* Severity Comparison */}
       <div className="mb-4 rounded-xl bg-zinc-50 p-4 dark:bg-zinc-800/50">
         <h3 className="mb-3 text-sm font-bold text-zinc-700 dark:text-zinc-300">
-          Resumen de Severidad
+          Severity Summary
         </h3>
-        <SeverityBar label="Contrato 1" clauses={result.contract1Analysis.clauses} />
-        <SeverityBar label="Contrato 2" clauses={result.contract2Analysis.clauses} />
+        <SeverityBar label="Contract 1" clauses={result.contract1Analysis.clauses} />
+        <SeverityBar label="Contract 2" clauses={result.contract2Analysis.clauses} />
       </div>
 
       {/* Key Differences Table */}
       {result.keyDifferences.length > 0 && (
         <div className="mb-4">
           <h3 className="mb-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
-            Diferencias Clave
+            Key Differences
           </h3>
           <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-700">
             <table className="w-full text-left">
               <thead className="bg-zinc-100 dark:bg-zinc-800">
                 <tr>
                   <th className="px-3 py-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                    Aspecto
+                    Aspect
                   </th>
                   <th className="px-3 py-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                    Contrato 1
+                    Contract 1
                   </th>
                   <th className="px-3 py-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                    Contrato 2
+                    Contract 2
                   </th>
                   <th className="px-3 py-2 text-center text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                    Mejor
+                    Better
                   </th>
                 </tr>
               </thead>
@@ -168,7 +167,7 @@ export default function ComparisonPanel({ result }: ComparisonPanelProps) {
       {/* Overall Summary */}
       <div className="mb-4 rounded-xl bg-blue-50 p-4 dark:bg-blue-900/20">
         <h3 className="mb-2 text-sm font-bold text-blue-800 dark:text-blue-300">
-          Resumen General
+          Overall Summary
         </h3>
         <p className="text-sm text-blue-700 dark:text-blue-400">
           {result.overallSummary}
@@ -192,16 +191,15 @@ export default function ComparisonPanel({ result }: ComparisonPanelProps) {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">
-                    Contrato {num}
+                    Contract {num}
                   </span>
                   <span
-                    className={`rounded px-2 py-0.5 text-xs font-medium ${
-                      analysis.verdict === "harmful"
-                        ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-                        : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    }`}
+                    className={`rounded px-2 py-0.5 text-xs font-medium ${analysis.verdict === "harmful"
+                      ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                      : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                      }`}
                   >
-                    {analysis.verdict === "harmful" ? "Perjudicial" : "Seguro"}
+                    {analysis.verdict === "harmful" ? "Harmful" : "Safe"}
                   </span>
                 </div>
                 <svg

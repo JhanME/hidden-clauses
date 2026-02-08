@@ -150,17 +150,17 @@ export default function PdfViewer({ fileUrl, clauses }: PdfViewerProps) {
             disabled={pageNumber <= 1}
             className="rounded-lg bg-zinc-200 px-3 py-1.5 text-sm font-medium disabled:opacity-40 dark:bg-zinc-700"
           >
-            Anterior
+            Previous
           </button>
           <span className="text-sm text-zinc-600 dark:text-zinc-400">
-            Página {pageNumber} de {numPages}
+            Page {pageNumber} of {numPages}
           </span>
           <button
             onClick={() => setPageNumber((p) => Math.min(numPages, p + 1))}
             disabled={pageNumber >= numPages}
             className="rounded-lg bg-zinc-200 px-3 py-1.5 text-sm font-medium disabled:opacity-40 dark:bg-zinc-700"
           >
-            Siguiente
+            Next
           </button>
         </div>
       )}

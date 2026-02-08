@@ -17,7 +17,7 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
   loading: () => (
     <div className="flex h-full items-center justify-center">
-      <p className="text-zinc-500">Cargando visor PDF...</p>
+      <p className="text-zinc-500">Loading PDF viewer...</p>
     </div>
   ),
 });
@@ -111,41 +111,6 @@ export default function ComparePage() {
         })(),
       ]);
 
-      if (!validateResponse1.ok || !validateResponse2.ok) {
-        throw new Error("Error al verificar los documentos");
-      }
-
-      const [validation1, validation2]: [ValidationResult, ValidationResult] = await Promise.all([
-        validateResponse1.json(),
-        validateResponse2.json(),
-      ]);
-
-      if (!validation1.isContract && !validation2.isContract) {
-        setError(
-          `Ninguno de los documentos es un contrato. Contrato 1: ${validation1.documentType}. Contrato 2: ${validation2.documentType}.`
-        );
-        setIsComparing(false);
-        setComparisonStep("idle");
-        return;
-      }
-
-      if (!validation1.isContract) {
-        setError(
-          `El Contrato 1 no es un contrato. Tipo detectado: ${validation1.documentType}. ${validation1.reason}`
-        );
-        setIsComparing(false);
-        setComparisonStep("idle");
-        return;
-      }
-
-      if (!validation2.isContract) {
-        setError(
-          `El Contrato 2 no es un contrato. Tipo detectado: ${validation2.documentType}. ${validation2.reason}`
-        );
-        setIsComparing(false);
-        setComparisonStep("idle");
-        return;
-      }
 
       // Step 2: Extract text and scan for sensitive data
       setComparisonStep("scanning");
@@ -174,7 +139,7 @@ export default function ComparePage() {
       // Step 3: Run comparison
       await runComparison(selectedFile1, selectedFile2);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Ocurrió un error inesperado");
+      setError(err instanceof Error ? err.message : "An unexpected error occurred");
       setIsComparing(false);
       setComparisonStep("idle");
     }
@@ -234,10 +199,10 @@ export default function ComparePage() {
         ],
         summary: [
           sensitiveDataResult.contract1?.hasSensitiveData
-            ? `Contrato 1: ${sensitiveDataResult.contract1.summary}`
+            ? `Contract 1: ${sensitiveDataResult.contract1.summary}`
             : null,
           sensitiveDataResult.contract2?.hasSensitiveData
-            ? `Contrato 2: ${sensitiveDataResult.contract2.summary}`
+            ? `Contract 2: ${sensitiveDataResult.contract2.summary}`
             : null,
         ]
           .filter(Boolean)
@@ -253,9 +218,9 @@ export default function ComparePage() {
 
   const stepMessages: Record<ComparisonStep, string> = {
     idle: "",
-    validating: "Verificando que ambos documentos sean contratos...",
-    scanning: "Escaneando datos sensibles...",
-    comparing: "Comparando contratos...",
+    validating: "Verifying both documents are contracts...",
+    scanning: "Scanning for sensitive data...",
+    comparing: "Comparing contracts...",
   };
 
   return (
@@ -275,12 +240,13 @@ export default function ComparePage() {
       <header className="relative z-10 shrink-0 border-b border-zinc-200 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
         <div className="flex items-center justify-between">
           <div>
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-2 mb-1">
+              <img src="/logo_bg2.png" alt="Hidden Clauses Logo" className="h-6 w-6 object-contain" />
               <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
                 Hidden Clauses
               </h1>
             </Link>
-            <p className="text-sm text-zinc-500">Comparar contratos</p>
+            <p className="text-sm text-zinc-500">Compare contracts</p>
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
@@ -290,7 +256,7 @@ export default function ComparePage() {
                 onClick={handleReset}
                 className="rounded-lg bg-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-600"
               >
-                Nueva comparación
+                New Comparison
               </button>
             )}
           </div>
@@ -320,7 +286,7 @@ export default function ComparePage() {
                     : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
                     }`}
                 >
-                  Contrato 1
+                  Contract 1
                 </button>
                 <button
                   onClick={() => setActivePdf(2)}
@@ -329,7 +295,7 @@ export default function ComparePage() {
                     : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
                     }`}
                 >
-                  Contrato 2
+                  Contract 2
                 </button>
               </div>
 
@@ -339,7 +305,7 @@ export default function ComparePage() {
                   }`}
               >
                 <div className="mb-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                  Contrato 1
+                  Contract 1
                 </div>
                 <div className="flex-1 overflow-hidden">
                   {fileUrl1 && (
@@ -394,7 +360,7 @@ export default function ComparePage() {
                         : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                         }`}
                     >
-                      Comparación
+                      Comparison
                     </button>
                     <button
                       onClick={() => setActiveTab("chat")}
@@ -403,7 +369,7 @@ export default function ComparePage() {
                         : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                         }`}
                     >
-                      Preguntas
+                      Chat
                     </button>
                   </div>
 
@@ -423,7 +389,7 @@ export default function ComparePage() {
               ) : (
                 <div className="flex flex-1 items-center justify-center p-8">
                   <p className="text-sm text-zinc-500">
-                    Sube dos contratos para comparar
+                    Upload two contracts to compare
                   </p>
                 </div>
               )}
@@ -435,7 +401,7 @@ export default function ComparePage() {
                 }`}
             >
               <div className="mb-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Contrato 2
+                Contract 2
               </div>
               <div className="flex-1 overflow-hidden">
                 {fileUrl2 && (

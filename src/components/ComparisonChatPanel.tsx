@@ -10,10 +10,10 @@ interface ComparisonChatPanelProps {
 }
 
 const exampleQuestions = [
-  "¿Cuál contrato tiene menos penalizaciones?",
-  "¿Qué diferencias hay en los plazos de duración?",
-  "¿Cuál me da más flexibilidad para cancelar?",
-  "¿Qué contrato protege mejor mis derechos?",
+  "Which contract has fewer penalties?",
+  "What are the differences in duration terms?",
+  "Which one gives me more flexibility to cancel?",
+  "Which contract protects my rights better?",
 ];
 
 export default function ComparisonChatPanel({
@@ -79,7 +79,7 @@ export default function ComparisonChatPanel({
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "Lo siento, hubo un error al procesar tu pregunta. Por favor, intenta de nuevo.",
+        content: "Sorry, there was an error processing your question. Please try again.",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -106,15 +106,15 @@ export default function ComparisonChatPanel({
             <div className="mb-6 text-center">
               <div className="mb-2 text-4xl">💬</div>
               <h3 className="text-lg font-medium text-zinc-700 dark:text-zinc-300">
-                Pregunta sobre la comparación
+                Ask about the comparison
               </h3>
               <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                Haz preguntas sobre las diferencias entre los contratos
+                Ask questions about the differences between contracts
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
               <p className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
-                Preguntas sugeridas:
+                Suggested questions:
               </p>
               {exampleQuestions.map((question, idx) => (
                 <button
@@ -135,11 +135,10 @@ export default function ComparisonChatPanel({
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-                    message.role === "user"
+                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.role === "user"
                       ? "bg-blue-600 text-white"
                       : "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200"
-                  }`}
+                    }`}
                 >
                   <p className="whitespace-pre-wrap text-sm">{message.content}</p>
                 </div>
@@ -168,7 +167,7 @@ export default function ComparisonChatPanel({
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Pregunta sobre la comparación..."
+            placeholder="Question about the comparison..."
             disabled={isLoading}
             className="flex-1 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
           />
@@ -177,7 +176,7 @@ export default function ComparisonChatPanel({
             disabled={!input.trim() || isLoading}
             className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Enviar
+            Send
           </button>
         </div>
       </form>

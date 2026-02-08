@@ -10,16 +10,16 @@ import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorks from "@/components/HowItWorks";
 
 const taglines = [
-  "Lee lo que nadie lee. Protege lo que todos firman.",
-  "Las letras pequeñas ya no serán invisibles.",
-  "Descubre lo que esconden los contratos antes de firmar.",
-  "Letras pequeñas, grandes consecuencias. Conócelas aquí.",
-  "Lo que está en letra pequeña… lo ponemos en grande.",
-  "No firmes a ciegas. Descifra la letra pequeña.",
-  "Cláusulas ocultas al descubierto.",
-  "Porque lo pequeño también cuenta (y mucho).",
-  "Lee entre líneas. Evita sorpresas.",
-  "Tu defensa contra las letras pequeñas.",
+  "Read what no one reads. Protect what everyone signs.",
+  "The fine print will no longer be invisible.",
+  "Discover what contracts hide before you sign.",
+  "Small print, big consequences. Know them here.",
+  "What is in fine print… we put it in big letters.",
+  "Don't sign blindly. Decipher the fine print.",
+  "Hidden clauses exposed.",
+  "Because the small details matter (a lot).",
+  "Read between the lines. Avoid surprises.",
+  "Your defense against the fine print.",
 ];
 export default function LandingPage() {
 
@@ -36,7 +36,8 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.06)_0%,_transparent_60%)] dark:bg-[radial-gradient(ellipse_at_center,_rgba(34,211,238,0.08)_0%,_transparent_60%)]" />
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-[#0a0a0a]/80 md:px-10">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <img src="/logo_bg2.png" alt="Hidden Clauses Logo" className="h-8 w-8 object-contain" />
           <span className="text-lg font-bold tracking-tight">Hidden Clauses</span>
         </div>
         <div className="flex items-center gap-3">
@@ -67,7 +68,7 @@ export default function LandingPage() {
 
           {/* Title */}
           <h1 className="mb-6 max-w-4xl text-5xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-7xl">
-            Analiza <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-cyan-300">Contratos</span> <br className="hidden md:block" /> Inteligentemente
+            Analyze <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-cyan-300">Contracts</span> <br className="hidden md:block" /> Intelligently
           </h1>
 
           {/* Subtitle */}
@@ -90,8 +91,8 @@ export default function LandingPage() {
                 </svg>
               </div>
 
-              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Analizar contrato</h3>
-              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Detecta cláusulas ocultas, riesgos y oportunidades en segundos.</p>
+              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Analyze contract</h3>
+              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Detect hidden clauses, risks, and opportunities in seconds.</p>
             </Link>
 
             {/* Compare Card */}
@@ -107,8 +108,8 @@ export default function LandingPage() {
                 </svg>
               </div>
 
-              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Comparar contratos</h3>
-              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Sube dos versiones y encuentra las diferencias críticas.</p>
+              <h3 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">Compare contracts</h3>
+              <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">Upload two versions and find critical differences.</p>
             </Link>
           </div>
         </div>

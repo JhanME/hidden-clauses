@@ -54,16 +54,16 @@ function ClauseCard({ clause }: { clause: Clause }) {
 const stepMessages: Record<AnalysisStep, { title: string; subtitle: string }> = {
   idle: { title: "", subtitle: "" },
   validating: {
-    title: "Verificando tipo de documento...",
-    subtitle: "Comprobando si es un contrato válido",
+    title: "Verifying document type...",
+    subtitle: "Checking if it is a valid contract",
   },
   scanning: {
-    title: "Escaneando datos sensibles...",
-    subtitle: "Buscando información personal",
+    title: "Scanning for sensitive data...",
+    subtitle: "Searching for personal information",
   },
   analyzing: {
-    title: "Analizando contrato...",
-    subtitle: "Identificando cláusulas y riesgos",
+    title: "Analyzing contract...",
+    subtitle: "Identifying clauses and risks",
   },
 };
 
@@ -72,7 +72,7 @@ export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep
     return (
       <div className="flex h-full items-center justify-center p-8">
         <div className="rounded-xl bg-red-50 p-6 text-center dark:bg-red-950/20">
-          <p className="text-lg font-medium text-red-700 dark:text-red-400">Error en el análisis</p>
+          <p className="text-lg font-medium text-red-700 dark:text-red-400">Analysis Error</p>
           <p className="mt-2 text-sm text-red-600 dark:text-red-300">{error}</p>
         </div>
       </div>
@@ -108,18 +108,16 @@ export default function AnalysisPanel({ isAnalyzing, result, error, analysisStep
     <div className="flex h-full flex-col overflow-hidden">
       {/* Verdict banner */}
       <div
-        className={`shrink-0 rounded-xl p-4 text-center ${
-          isHarmful
+        className={`shrink-0 rounded-xl p-4 text-center ${isHarmful
             ? "bg-red-100 dark:bg-red-950/30"
             : "bg-green-100 dark:bg-green-950/30"
-        }`}
+          }`}
       >
         <p
-          className={`text-lg font-bold ${
-            isHarmful
+          className={`text-lg font-bold ${isHarmful
               ? "text-red-700 dark:text-red-400"
               : "text-green-700 dark:text-green-400"
-          }`}
+            }`}
         >
           {isHarmful ? "Harmful Clauses Detected" : "Contract Appears Safe"}
         </p>

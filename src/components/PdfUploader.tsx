@@ -52,11 +52,10 @@ export default function PdfUploader({ onFileSelected }: PdfUploaderProps) {
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      className={`flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 transition-colors ${
-        isDragging
+      className={`flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 transition-colors ${isDragging
           ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20"
           : "border-zinc-300 dark:border-zinc-700"
-      }`}
+        }`}
     >
       <svg
         className="mb-4 h-16 w-16 text-zinc-400"
