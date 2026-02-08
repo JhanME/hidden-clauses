@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { UserButton } from "@clerk/nextjs";
+
 import PdfUploader from "@/components/PdfUploader";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -194,7 +194,7 @@ export default function AnalyzePage() {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <UserButton afterSignOutUrl="/" />
+
             {file && (
               <button
                 onClick={handleReset}
@@ -228,8 +228,8 @@ export default function AnalyzePage() {
               <button
                 onClick={() => setActiveTab("analysis")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "analysis"
-                    ? "border-b-2 border-blue-600 text-blue-600"
-                    : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                  ? "border-b-2 border-blue-600 text-blue-600"
+                  : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
                 Análisis
@@ -237,8 +237,8 @@ export default function AnalyzePage() {
               <button
                 onClick={() => setActiveTab("chat")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "chat"
-                    ? "border-b-2 border-blue-600 text-blue-600"
-                    : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                  ? "border-b-2 border-blue-600 text-blue-600"
+                  : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
                   }`}
               >
                 Preguntas

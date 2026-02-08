@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.37.0",
-    "@clerk/themes": "^2.4.51",
     "@google/generative-ai": "^0.24.1",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
