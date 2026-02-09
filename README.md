@@ -1,77 +1,79 @@
 # Hidden Clauses
 
 <p align="center">
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" /></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
-  <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Google%20Gemini-AI-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" /></a>
-  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.1-black?logo=next.js&logoColor=white" alt="Next.js" /></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React" /></a>
+  <a href="https://git-scm.com/"><img src="https://img.shields.io/badge/Git-Version_Control-F05032?logo=git&logoColor=white" alt="Git" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.0-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Google_Gemini-AI-9F55FF?logo=google&logoColor=white" alt="Google Gemini" /></a>
+  <a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/VSCode-Editor-007ACC?logo=visualstudiocode&logoColor=white" alt="VSCode" /></a>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-Deployment-000000?logo=vercel&logoColor=white" alt="Vercel" /></a>
 </p>
 
-## Sobre el Proyecto
+## About the Project
 
-**Hidden Clauses** es una herramienta esencial diseñada para empoderar a los usuarios frente a la complejidad legal. Utilizando la potencia de la Inteligencia Artificial de **Google Gemini**, nuestra aplicación analiza contratos en formato PDF para detectar, resaltar y explicar cláusulas potencialmente abusivas, riesgosas o confusas "letras pequeñas" que a menudo pasan desapercibidas.
+**Hidden Clauses** is an essential tool designed to empower users in the face of legal complexity. Utilizing the power of **Google Gemini** Artificial Intelligence, our application analyzes contracts in PDF format to detect, highlight, and explain potentially abusive, risky, or confusing clauses—the "fine print" that often goes unnoticed.
 
-El objetivo es simple pero vital: **Leer lo que nadie lee para proteger lo que todos firman.**
+The goal is simple but vital: **Read what no one reads to protect what everyone signs.**
 
-Esta aplicación fue construida como parte de un Hackathon, demostrando cómo la IA puede tener un impacto real y positivo en la seguridad jurídica cotidiana de las personas.
+This application was built as part of a Hackathon, demonstrating how AI can have a real and positive impact on people's everyday legal security.
 
-## Características Principales
+## Main Features
 
-*   **Análisis Inteligente de Contratos:** Sube tu PDF y deja que la IA escanee cada párrafo en busca de términos desfavorables.
-*   **Comparación de Documentos:** Sube dos versiones de un contrato para identificar cambios sutiles pero críticos entre ellas.
-*   **Chat con tu Contrato:** ¿Tienes dudas específicas? Pregúntale directamente al documento y obtén respuestas basadas en el contexto legal del archivo.
-*   **Detección de Datos Sensibles:** Identificación automática de información personal (PII) antes del análisis para proteger la privacidad.
-*   **Interfaz Moderna e Intuitiva:** Diseñada con las últimas tecnologías web para una experiencia de usuario fluida y agradable.
+*   **Intelligent Contract Analysis:** Upload your PDF and let the AI scan every paragraph for unfavorable terms.
+*   **Document Comparison:** Upload two versions of a contract to identify subtle but critical changes between them.
+*   **Chat with your Contract:** Have specific doubts? Ask the document directly and get answers based on the legal context of the file.
+*   **Sensitive Data Detection:** Automatic identification of personally identifiable information (PII) before analysis to protect privacy.
+*   **Modern and Intuitive Interface:** Designed with the latest web technologies for a smooth and pleasant user experience.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-Este proyecto aprovecha un stack tecnológico moderno y robusto:
+This project leverages a modern and robust tech stack:
 
-*   **Frontend & Framework:** [Next.js 16](https://nextjs.org/) con [React 19](https://react.dev/) para un rendimiento óptimo y renderizado del lado del servidor.
-*   **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un código seguro y escalable.
-*   **Estilos:** [Tailwind CSS 4](https://tailwindcss.com/) para un diseño rápido, responsivo y visualmente atractivo.
-*   **Inteligencia Artificial:** [Google Gemini API](https://ai.google.dev/) para el procesamiento de lenguaje natural y análisis legal.
-*   **Manejo de PDF:** `react-pdf` para la visualización y `pdf-parse` (o similar) para la extracción de texto.
-*   **Iconografía:** [Lucide React](https://lucide.dev/) para iconos limpios y consistentes.
+*   **Frontend & Framework:** [Next.js 16](https://nextjs.org/) with [React 19](https://react.dev/) for optimal performance and server-side rendering.
+*   **Language:** [TypeScript](https://www.typescriptlang.org/) for safe and scalable code.
+*   **Styling:** [Tailwind CSS 4](https://tailwindcss.com/) for fast, responsive, and visually appealing design.
+*   **Artificial Intelligence:** [Google Gemini API](https://ai.google.dev/) for natural language processing and legal analysis.
+*   **PDF Handling:** `react-pdf` for visualization and `pdf-parse` (or similar) for text extraction.
+*   **Iconography:** [Lucide React](https://lucide.dev/) for clean and consistent icons.
 
-## Comenzando
+## Getting Started
 
-Sigue estos pasos para ejecutar el proyecto localmente.
+Follow these steps to run the project locally.
 
-### Prerrequisitos
+### Prerequisites
 
-*   Node.js (versión LTS recomendada)
+*   Node.js (LTS version recommended)
 *   npm
 
-### Instalación
+### Installation
 
-1.  **Clonar el repositorio**
+1.  **Clone the repository**
     ```bash
     git clone https://github.com/JhanME/hidden-clauses.git
     cd hidden-clauses
     ```
 
-2.  **Instalar dependencias**
+2.  **Install dependencies**
     ```bash
     npm install
     ```
 
-3.  **Configurar variables de entorno**
-    Crea un archivo `.env.local` en la raíz del proyecto y añade tu clave API de Google Gemini:
+3.  **Configure environment variables**
+    Create a `.env.local` file in the root of the project and add your Google Gemini API key:
     ```env
-    GEMINI_API_KEY=tu_clave_api_aqui
+    GEMINI_API_KEY=your_api_key_here
     ```
 
-4.  **Ejecutar el servidor de desarrollo**
+4.  **Run the development server**
     ```bash
     npm run dev
     ```
 
-5.  Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
+5.  Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-## Equipo
+## Team
 
 *   **Andres** - [GitHub](https://github.com/AndresRJ18)
 *   **Wilmer** - [GitHub](https://github.com/sebastianherrera77)
@@ -79,5 +81,5 @@ Sigue estos pasos para ejecutar el proyecto localmente.
 
 ---
 <p align="center">
-  Hecho en el Gemini 3 Hackathon
+  Made in the Gemini 3 Hackathon
 </p>
