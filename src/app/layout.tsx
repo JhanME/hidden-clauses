@@ -20,37 +20,31 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Hidden Clauses",
-    template: "%s | Hidden Clauses", // Esto permite que páginas internas tengan títulos como "Analizar | Hidden Clauses"
+    template: "%s | Hidden Clauses",
   },
   description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
-
-  // OpenGraph (Facebook, LinkedIn, WhatsApp)
   openGraph: {
     title: "Hidden Clauses",
-    description: "AI-powered contract analysis. Find harmful terms in seconds.",
+    description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
     url: siteUrl,
     siteName: "Hidden Clauses",
     images: [
       {
-        url: "/opengraph-image.png", // Next.js resolverá esto a https://www.hiddenclauses.org/opengraph-image.png
+        url: `${siteUrl}/opengraph-image.png`,
         width: 1200,
         height: 630,
-        alt: "Hidden Clauses AI Analysis Tool",
+        alt: "Hidden Clauses",
       },
     ],
     locale: "en_US",
     type: "website",
   },
-
-  // Twitter / X
   twitter: {
     card: "summary_large_image",
     title: "Hidden Clauses",
-    description: "Don't sign before you scan. AI-powered contract analysis.",
-    images: ["/opengraph-image.png"], // Reutiliza la misma imagen
+    description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
+    images: [`${siteUrl}/opengraph-image.png`],
   },
-
-  // Extras útiles para SEO
   robots: {
     index: true,
     follow: true,
