@@ -28,14 +28,6 @@ export const metadata: Metadata = {
     description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
     url: siteUrl,
     siteName: "Hidden Clauses",
-    images: [
-      {
-        url: `${siteUrl}/opengraph-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "Hidden Clauses",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -43,7 +35,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hidden Clauses",
     description: "Upload a PDF contract and get AI-powered analysis of every clause, highlighting harmful or unfavorable terms.",
-    images: [`${siteUrl}/opengraph-image.png`],
   },
   robots: {
     index: true,

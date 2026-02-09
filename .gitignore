@@ -44,5 +44,7 @@ next-env.d.ts
 /.claude
 /.clerk
 src/app/DEMO_SCRIPT.txt
+
+#AGENTS
 GEMINI.md
 CLAUDE.md 
