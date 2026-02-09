@@ -40,7 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#claude
-.claude
-
+#otros
+/.claude
+/.clerk
 src/app/DEMO_SCRIPT.txt
+GEMINI.md
+CLAUDE.md 
